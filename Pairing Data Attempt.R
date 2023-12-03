@@ -1,12 +1,25 @@
 #New attempt at matching Programs
 
-##Using data set with 6 pages (Edited2019uropairing.xlsx)
+##Using data set with 4 pages (Edited2019uropairing.xlsx)
 #Page1 Uro Pairing sheet (MS with Residency)
 #Page2 2019 MS who appplied Uro from each program
 #Page3 2019 Demographics of Med students who applied to each program
 #Page4 Individual Program Resident Demographics
 #Page5 2013-2019 Residents who matched demographics
 #Page 6 = 2020 PD Demographics
+#Page 7 = Faculty.Race.by.School.and.Year
+#Page 8 = Schools.Public.Private.AUA
+#Page 9 = ChairsbySexandRace 
+#Page 10 = Entire Demographics of MS who applied from each school by year
+#Page 11 = Entire demographics of MS who applied Per Program
+#Page 12 = current Resident demographics per year 
+#page 13= Entire entering residents Demo
+#Page 14= Completed residency demo
+
+
+
+git config:: user.email "dfdelbrune@gmail.com"
+git config:: user.name "Devante Delbrune"
 
 
 
@@ -60,6 +73,46 @@ PDDEMO2020 <- read_excel("EDITED2019UROPairing.xlsx", 6)
 View(PDDEMO2020)
 
 
+#Page 7 = Faculty.Race.by.School.and.Year
+Faculty.Race.School.Yr <- read_excel("EDITED2019UROPairing.xlsx", 7)
+View(Faculty.Race.School.Yr)
+
+#Page 8 = Schools.Public.Private.AUA
+School.pri.pub <- read_excel("EDITED2019UROPairing.xlsx", 8)
+View(School.pri.pub)
+
+#Page 9 = ChairsbySexandRace 
+Chair.sex.Race <- read_excel("EDITED2019UROPairing.xlsx", 9)
+View(Chair.sex.Race)
+
+
+#Page 10 = Entire Demographics of MS who applied from each school by year
+Entire.MS.Apply.Per.Sch <- read_excel("EDITED2019UROPairing.xlsx", 10)
+View(Entire.MS.Apply.Per.Sch)
+
+#Page 11 = Entire demographics of MS who applied Per Program
+Entire.MS.Apply.Res <- read_excel("EDITED2019UROPairing.xlsx", 11)
+View(Entire.MS.Apply.Res)
+
+#Page 12 = current Resident demographics per year 
+Res.Demo.Per.Year <- read_excel("EDITED2019UROPairing.xlsx", 12)
+View(Res.Demo.Per.Year)
+
+#page 13= Entire entering residents Demo
+Entering.Res.Demo <- read_excel("EDITED2019UROPairing.xlsx", 13)
+View(Entering.Res.Demo)
+
+#Page 14= Completed residency demo
+Comp.Residents <- read_excel("EDITED2019UROPairing.xlsx", 14)
+View(Comp.Residents)
+
+
+
+
+
+
+
+
 
 
 #Tier programs from 2019 based on # of black applicants
@@ -95,10 +148,13 @@ View(matching_ApplyMS.Res)'
 # looking for linear regression
 
 lmBlackMSPerRes = lm(Black.x~Black.y, data = matching_ApplyMS.Res) #Create the linear regression
-dr5t88888888888888888888i9tfrrrrrr
+
 
 View(lmBlackMSPerRes)
-plot(lmBlackMSPerRes)
+
+##Looking at MS dependent upon residents
+lmBlackResPerMS = lm(Black.y~Black.x, data = matching_ApplyMS.Res)
+View(lmBlackResPerMS)
 
 #Graphing linear regression
 library(ggplot2)
@@ -123,4 +179,14 @@ plot(BMSPerBRes)
 
 #Look at Demographic make up of top programs
 
+
+
+## look at MSm -> Residents overtime -
+# Look at all demographics- seperate (based on urim at points)
+# URIM - definition AAMC- (look up)
+# Black, Alaskan, Hawaiian, Latinx/Hispanic,
+# Exclude unknown/multiple from comparison-
+# November 1st- 11am EST
+# Look up recent publications, Like beget like- secondary outcome of paper
+# look at other specialties, work within field what we are adding.
 
